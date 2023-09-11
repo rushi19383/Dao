@@ -29,7 +29,7 @@ contract MyGovernorTest is Test {
 
     function setUp() public {
         token = new GovToken();
-        token._mint(VOTER, 100e18);
+        token.mint(VOTER, 100e18);
 
         vm.prank(VOTER);
         token.delegate(VOTER);
@@ -92,6 +92,6 @@ contract MyGovernorTest is Test {
         // 4. Execute
         governor.execute(addressesToCall, values, functionCalls, descriptionHash);
 
-        assert(box.retrieve() == valueToStore);
+        assert(box.getNumber() == valueToStore);
     }
 }
